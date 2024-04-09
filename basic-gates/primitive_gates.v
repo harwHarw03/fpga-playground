@@ -56,3 +56,14 @@ output wire Y;
 assign Y = (S1 & S0) ? D : (S1 & ~S0) ? C : (S0 & ~S1) ? B : A;
 
 endmodule
+
+module dec2t4 (A, D);
+input wire [1:0] A;
+output wire [3:0] D;
+
+assign D[0] = ~A[0] & ~A[1]; 
+assign D[1] = A[0] & ~A[1];
+assign D[2] = ~A[0] & A[1];
+assign D[3] = A[0] & A[1];
+
+endmodule
