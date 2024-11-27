@@ -1,0 +1,70 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x63979a883ec0 .scope module, "banba_tb" "banba_tb" 2 1;
+ .timescale 0 0;
+v0x63979a8a9580_0 .var "a", 0 0;
+v0x63979a8a9670_0 .net "b_ba", 0 0, v0x63979a85c7b0_0;  1 drivers
+v0x63979a8a9730_0 .net "b_nba", 0 0, v0x63979a8a9390_0;  1 drivers
+v0x63979a8a9830_0 .net "c_ba", 0 0, v0x63979a85cba0_0;  1 drivers
+v0x63979a8a9900_0 .net "c_nba", 0 0, v0x63979a8a9430_0;  1 drivers
+S_0x63979a8955a0 .scope module, "ba_uut" "ba" 2 6, 3 1 0, S_0x63979a883ec0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /OUTPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "c";
+v0x63979a85c350_0 .net "a", 0 0, v0x63979a8a9580_0;  1 drivers
+v0x63979a85c7b0_0 .var "b", 0 0;
+v0x63979a85cba0_0 .var "c", 0 0;
+S_0x63979a8a9070 .scope module, "nba_uut" "nba" 2 12, 3 12 0, S_0x63979a883ec0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /OUTPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "c";
+v0x63979a8a92a0_0 .net "a", 0 0, v0x63979a8a9580_0;  alias, 1 drivers
+v0x63979a8a9390_0 .var "b", 0 0;
+v0x63979a8a9430_0 .var "c", 0 0;
+    .scope S_0x63979a8955a0;
+T_0 ;
+    %load/vec4 v0x63979a85c350_0;
+    %store/vec4 v0x63979a85c7b0_0, 0, 1;
+    %load/vec4 v0x63979a85c7b0_0;
+    %store/vec4 v0x63979a85cba0_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0x63979a8a9070;
+T_1 ;
+    %delay 1, 0;
+    %load/vec4 v0x63979a8a92a0_0;
+    %assign/vec4 v0x63979a8a9390_0, 0;
+    %delay 1, 0;
+    %load/vec4 v0x63979a8a9390_0;
+    %assign/vec4 v0x63979a8a9430_0, 0;
+    %end;
+    .thread T_1;
+    .scope S_0x63979a883ec0;
+T_2 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x63979a8a9580_0, 0, 1;
+    %vpi_call 2 21 "$display", "Blocking Assignment Module:" {0 0 0};
+    %delay 5, 0;
+    %vpi_call 2 23 "$display", "Blocking: A = %b, B = %b, C = %b, Time = %0t", v0x63979a8a9580_0, v0x63979a8a9670_0, v0x63979a8a9830_0, $time {0 0 0};
+    %delay 10, 0;
+    %vpi_call 2 25 "$display", "nonBlocking Assignment Module:" {0 0 0};
+    %delay 5, 0;
+    %vpi_call 2 27 "$display", "nonBlocking: A = %b, B = %b, C = %b, Time = %0t", v0x63979a8a9580_0, v0x63979a8a9730_0, v0x63979a8a9900_0, $time {0 0 0};
+    %vpi_call 2 29 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "banba_tb.v";
+    "banba.v";

@@ -1,0 +1,78 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x637039801320 .scope module, "comparator_2bit" "comparator_2bit" 2 20;
+ .timescale 0 0;
+    .port_info 0 /INPUT 2 "A";
+    .port_info 1 /INPUT 2 "B";
+    .port_info 2 /OUTPUT 1 "A_gt_B";
+    .port_info 3 /OUTPUT 1 "A_lt_B";
+    .port_info 4 /OUTPUT 1 "A_eq_B";
+o0x6ffd1805e018 .functor BUFZ 2, C4<zz>; HiZ drive
+v0x6370397c7ef0_0 .net "A", 1 0, o0x6ffd1805e018;  0 drivers
+v0x6370398168c0_0 .net "A_eq_B", 0 0, L_0x637039817e90;  1 drivers
+v0x637039816980_0 .net "A_gt_B", 0 0, L_0x637039817c20;  1 drivers
+v0x637039816a20_0 .net "A_lt_B", 0 0, L_0x637039817d20;  1 drivers
+o0x6ffd1805e0d8 .functor BUFZ 2, C4<zz>; HiZ drive
+v0x637039816ae0_0 .net "B", 1 0, o0x6ffd1805e0d8;  0 drivers
+L_0x637039817c20 .cmp/gt 2, o0x6ffd1805e018, o0x6ffd1805e0d8;
+L_0x637039817d20 .cmp/gt 2, o0x6ffd1805e0d8, o0x6ffd1805e018;
+L_0x637039817e90 .cmp/eq 2, o0x6ffd1805e018, o0x6ffd1805e0d8;
+S_0x6370398014b0 .scope module, "full_adder" "full_adder" 2 10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "Cin";
+    .port_info 3 /OUTPUT 1 "Sum";
+    .port_info 4 /OUTPUT 1 "Carry";
+o0x6ffd1805e1f8 .functor BUFZ 1, C4<z>; HiZ drive
+o0x6ffd1805e228 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x637039817f30 .functor XOR 1, o0x6ffd1805e1f8, o0x6ffd1805e228, C4<0>, C4<0>;
+o0x6ffd1805e288 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x637039818000 .functor XOR 1, L_0x637039817f30, o0x6ffd1805e288, C4<0>, C4<0>;
+L_0x6370398180f0 .functor AND 1, o0x6ffd1805e1f8, o0x6ffd1805e228, C4<1>, C4<1>;
+L_0x637039818230 .functor XOR 1, o0x6ffd1805e1f8, o0x6ffd1805e228, C4<0>, C4<0>;
+L_0x6370398182d0 .functor AND 1, o0x6ffd1805e288, L_0x637039818230, C4<1>, C4<1>;
+L_0x6370398183e0 .functor OR 1, L_0x6370398180f0, L_0x6370398182d0, C4<0>, C4<0>;
+v0x637039816c60_0 .net "A", 0 0, o0x6ffd1805e1f8;  0 drivers
+v0x637039816d40_0 .net "B", 0 0, o0x6ffd1805e228;  0 drivers
+v0x637039816e00_0 .net "Carry", 0 0, L_0x6370398183e0;  1 drivers
+v0x637039816ea0_0 .net "Cin", 0 0, o0x6ffd1805e288;  0 drivers
+v0x637039816f60_0 .net "Sum", 0 0, L_0x637039818000;  1 drivers
+v0x637039817070_0 .net *"_ivl_0", 0 0, L_0x637039817f30;  1 drivers
+v0x637039817150_0 .net *"_ivl_4", 0 0, L_0x6370398180f0;  1 drivers
+v0x637039817230_0 .net *"_ivl_6", 0 0, L_0x637039818230;  1 drivers
+v0x637039817310_0 .net *"_ivl_8", 0 0, L_0x6370398182d0;  1 drivers
+S_0x6370397c7cf0 .scope module, "half_adder" "half_adder" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /OUTPUT 1 "Sum";
+    .port_info 3 /OUTPUT 1 "Carry";
+o0x6ffd1805e4c8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x637039818530 .functor NOT 1, o0x6ffd1805e4c8, C4<0>, C4<0>, C4<0>;
+o0x6ffd1805e498 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x6370398185a0 .functor AND 1, o0x6ffd1805e498, L_0x637039818530, C4<1>, C4<1>;
+L_0x637039818660 .functor NOT 1, o0x6ffd1805e498, C4<0>, C4<0>, C4<0>;
+L_0x637039818720 .functor AND 1, L_0x637039818660, o0x6ffd1805e4c8, C4<1>, C4<1>;
+L_0x637039818860 .functor OR 1, L_0x6370398185a0, L_0x637039818720, C4<0>, C4<0>;
+L_0x637039818970 .functor AND 1, o0x6ffd1805e498, o0x6ffd1805e4c8, C4<1>, C4<1>;
+v0x637039817520_0 .net "A", 0 0, o0x6ffd1805e498;  0 drivers
+v0x637039817600_0 .net "B", 0 0, o0x6ffd1805e4c8;  0 drivers
+v0x6370398176c0_0 .net "Carry", 0 0, L_0x637039818970;  1 drivers
+v0x637039817760_0 .net "Sum", 0 0, L_0x637039818860;  1 drivers
+v0x637039817820_0 .net *"_ivl_0", 0 0, L_0x637039818530;  1 drivers
+v0x637039817900_0 .net *"_ivl_2", 0 0, L_0x6370398185a0;  1 drivers
+v0x6370398179e0_0 .net *"_ivl_4", 0 0, L_0x637039818660;  1 drivers
+v0x637039817ac0_0 .net *"_ivl_6", 0 0, L_0x637039818720;  1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "primitive_extra_gates.v";
