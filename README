@@ -1,2 +1,4 @@
-test fpga hdl
+### RTL example
+
+RTL is an abstraction level of digital design, that involves several concepts : storage element (register), operation (arithmetic, logical, ), and data transfer (usually implemented as FSM)
 
