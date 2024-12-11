@@ -1,1 +1,9 @@
-### When designing circuits, one often has to think of the problem "backwards", starting from the outputs then working backwards towards the inputs
+# FPGAPlayground 
+
+mini experiments on hdl, and digital design stuff 
+
+always remember : 
+When designing circuits, one often has to think of the problem "backwards", starting from the outputs then working backwards towards the inputs
+
+for exercise : 
+https://hdlbits.01xz.net/
